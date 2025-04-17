@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { SearchForm } from '../../shared/ui/molecules/SearchForm/SearchForm';
 import { useApi } from '../../shared/api/useApi';
-import { cn } from '../../lib/utils';
 
 interface SearchResult {
   id: number;
