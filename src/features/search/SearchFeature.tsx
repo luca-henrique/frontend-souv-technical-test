@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SearchForm } from '../../shared/ui/molecules/SearchForm/SearchForm';
-import styles from './SearchFeature.module.css';
+import { cn } from '../../lib/utils';
 
 export const SearchFeature: React.FC = () => {
   const [searchResults, setSearchResults] = useState<string[]>([]);
@@ -16,14 +16,17 @@ export const SearchFeature: React.FC = () => {
   };
 
   return (
-    <div className={styles.searchFeature}>
-      <SearchForm onSearch={handleSearch} />
+    <div className="container mx-auto py-8">
+      <SearchForm onSearch={handleSearch} className="mb-8" />
       {isLoading ? (
-        <div className={styles.loading}>Loading...</div>
+        <div className="text-center text-muted-foreground">Loading...</div>
       ) : (
-        <ul className={styles.results}>
+        <ul className="space-y-2">
           {searchResults.map((result, index) => (
-            <li key={index} className={styles.resultItem}>
+            <li
+              key={index}
+              className="rounded-lg border bg-card p-4 text-card-foreground shadow-sm hover:bg-accent hover:text-accent-foreground"
+            >
               {result}
             </li>
           ))}
