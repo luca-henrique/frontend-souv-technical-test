@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Architecture
 
-## Getting Started
+This project follows Feature Sliced Architecture (FSA) combined with Atomic Design principles.
 
-First, run the development server:
+## Directory Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src/
+├── app/                 # Application initialization, routing, store, providers
+├── pages/              # Page components
+├── widgets/            # Complex UI components composed of entities and features
+├── features/           # User interactions, actions, and processes
+├── entities/           # Business entities and their logic
+└── shared/             # Reusable modules, helpers, and UI components
+    └── ui/             # UI components following Atomic Design
+        ├── atoms/      # Basic building blocks (buttons, inputs, etc.)
+        ├── molecules/  # Groups of atoms working together
+        └── organisms/  # Complex UI components composed of molecules
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Architecture Guidelines
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Feature Sliced Architecture (FSA)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **app/** - Application-wide configurations and providers
 
-## Learn More
+   - App initialization
+   - Routing configuration
+   - Global state management
+   - Theme providers
 
-To learn more about Next.js, take a look at the following resources:
+2. **pages/** - Page components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Each page represents a route
+   - Composed of widgets and features
+   - No business logic, only composition
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **widgets/** - Complex UI components
 
-## Deploy on Vercel
+   - Composed of entities and features
+   - Can be used across multiple pages
+   - May contain some business logic
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **features/** - User interactions and processes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   - User actions
+   - Business processes
+   - Feature-specific logic
+
+5. **entities/** - Business entities
+   - Data models
+   - Entity-specific logic
+   - API interactions
+
+### Atomic Design
+
+1. **atoms/** - Basic building blocks
+
+   - Buttons
+   - Inputs
+   - Labels
+   - Icons
+
+2. **molecules/** - Groups of atoms
+
+   - Search forms
+   - Navigation menus
+   - Cards
+
+3. **organisms/** - Complex UI components
+   - Headers
+   - Sidebars
+   - Content sections
+
+## Best Practices
+
+1. **Dependencies Flow**
+
+   - Higher layers can import from lower layers
+   - Lower layers cannot import from higher layers
+   - Shared layer can be imported by any layer
+
+2. **Component Organization**
+
+   - Keep components small and focused
+   - Use clear naming conventions
+   - Document component props and usage
+
+3. **Code Splitting**
+
+   - Split code by features
+   - Use lazy loading for routes
+   - Optimize bundle size
+
+4. **State Management**
+   - Use local state for UI state
+   - Use global state for shared data
+   - Keep state as close to usage as possible
