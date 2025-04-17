@@ -1,6 +1,6 @@
 # Project Architecture
 
-This project follows Feature Sliced Architecture (FSA) combined with Atomic Design principles and uses Shadcn UI for component styling.
+This project follows Feature Sliced Architecture (FSA) combined with Atomic Design principles and uses Shadcn UI for component styling. It also implements React Query for efficient data fetching and caching.
 
 ## Technologies
 
@@ -11,17 +11,25 @@ This project follows Feature Sliced Architecture (FSA) combined with Atomic Desi
   - Styled with Tailwind CSS
   - Dark mode support
   - Fully customizable and themeable
+- **React Query (TanStack Query)** - For efficient data fetching and caching
+  - Automatic background refetching
+  - Request deduplication
+  - Caching and invalidation
+  - Optimistic updates
+  - Error handling
 
 ## Directory Structure
 
 ```
 src/
 ├── app/                 # Application initialization, routing, store, providers
+│   └── providers/       # Global providers (QueryProvider, etc.)
 ├── pages/              # Page components
 ├── widgets/            # Complex UI components composed of entities and features
 ├── features/           # User interactions, actions, and processes
 ├── entities/           # Business entities and their logic
 └── shared/             # Reusable modules, helpers, and UI components
+    ├── api/            # API-related utilities and hooks
     └── ui/             # UI components following Atomic Design
         ├── atoms/      # Basic building blocks (buttons, inputs, etc.)
         ├── molecules/  # Groups of atoms working together
@@ -38,6 +46,7 @@ src/
    - Routing configuration
    - Global state management
    - Theme providers
+   - React Query provider
 
 2. **pages/** - Page components
 
@@ -56,6 +65,7 @@ src/
    - User actions
    - Business processes
    - Feature-specific logic
+   - Data fetching with React Query
 
 5. **entities/** - Business entities
    - Data models
@@ -98,19 +108,29 @@ src/
    - Use Shadcn UI components when available
    - Customize Shadcn UI components using Tailwind CSS
 
-3. **Code Splitting**
+3. **Data Fetching**
+
+   - Use React Query for all data fetching
+   - Implement proper error handling
+   - Use optimistic updates when appropriate
+   - Cache data at the appropriate level
+   - Implement proper loading states
+   - Use the shared `useApi` hook for consistency
+
+4. **Code Splitting**
 
    - Split code by features
    - Use lazy loading for routes
    - Optimize bundle size
 
-4. **State Management**
+5. **State Management**
 
+   - Use React Query for server state
    - Use local state for UI state
    - Use global state for shared data
    - Keep state as close to usage as possible
 
-5. **Styling**
+6. **Styling**
    - Use Tailwind CSS for custom styling
    - Follow Shadcn UI design patterns
    - Maintain consistent spacing and colors
