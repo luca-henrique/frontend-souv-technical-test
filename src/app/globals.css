@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+
+@theme{
+  --color-purple-light: #A881E6;
+  --color-purple-medium: #7450AC;
+  --color-purple-dark: #523480;
+  
+  --color-gray-100: #FBF9FE;
+  --color-gray-200: #AFABB6;
+  --color-gray-300: #252529;
+  --color-gray-400: #17171A;
+  --color-gray-500: #111112;
+  --color-gray-600: #0C0C0D;
+  
+  --color-success-light: #4E995E;
+  --color-feedback-success-dark: #2F723D;  
+  
+  --color-pink: #DB5BBF;
+  --color-pink-dark: #251622;
+  
+  --color-orange: #E07B67;
+  --color-orange-dark: #261A17;
+  
+  --color-yellow: #BB9F3A;
+  --color-yellow-dark: #211E12;
+  
+  --color-green: #8CAD51;
+  --color-green-dark: #1C2015;
+  
+  --color-blue: #7B94CB;
+  --color-blue-dark: #1A1D23;
+  
+  --font-family-inter: "Inter", sans-serif;
+  
+}
+
+@layer components {
+  .heading-1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: 130%;
+  }
+
+  .heading-2 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-bold);
+    line-height: 130%;
+  }
+
+  .button {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 120%;
+  }
+
+  .body {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-normal);
+    line-height: 130%;
+  }
+  
+}
