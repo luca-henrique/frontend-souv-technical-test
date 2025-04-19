@@ -1,0 +1,7 @@
+.SelectTrigger[data-placeholder] {
+	color: "gainsboro";
+}
+
+#chevrons [data-lucide="chevron-up"] {
+  display: none;
+}

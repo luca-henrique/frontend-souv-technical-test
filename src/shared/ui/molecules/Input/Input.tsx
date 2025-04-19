@@ -9,15 +9,15 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const InputWithLabel = ({ label, name, ...props }: InputProps) => {
   return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
+    <div className="flex flex-col w-full items-start gap-1.5 focus-within:[&>label]:text-[#9747FF]">
       <Label
         htmlFor={name}
-        className="text-gray-200 font-family-inter text-xs font-normal focus-visible:ring-purple-medium focus-visible:ring-1 focus-visible:ring-offset-0"
+        className="text-gray-200 font-family-inter text-xs font-normal transition-colors"
       >
         {label}
       </Label>
       <Input
-        className="bg-gray-500 h-[40px] rounded-md border-gray-300 focus-visible:ring-[#9747FF] focus-visible:ring-1 focus-visible:ring-offset-0 text-white"
+        className="bg-gray-500 h-[40px] rounded-md border-gray-300 focus-visible:ring-transparent focus-visible:ring-offset-0 text-white focus-visible:border-purple-medium"
         id={name}
         {...props}
       />

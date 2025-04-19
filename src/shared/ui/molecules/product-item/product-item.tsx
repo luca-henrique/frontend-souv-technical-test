@@ -8,6 +8,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CategoryTag } from "../category-tag/category-tag";
 import { useState } from "react";
 
+export const touchIsSupported = typeof window !== "undefined" && window.matchMedia('(pointer: coarse)').matches;
+
 interface ItemProps {
   category: string;
   name: string;
@@ -25,8 +27,13 @@ export const ProductItem = ({ category, name, quantity }: ItemProps) => {
     >
       <div className="flex flex-row items-center">
         <Checkbox
+          data-istouchsupported={touchIsSupported}
           checked={isChecked}
           onCheckedChange={() => setIsChecked(!isChecked)}
+          className="appearance-none w-4 h-4 border-[2px] border-purple-medium  checked:border-success-light checked:bg-success-light active:scale-95 transition-colors duration-100
+          data-[istouchsupported=false]:hover:bg-purple-dark
+          data-[state=checked]:bg-success-light data-[state=checked]:border-success-light
+          "
         />
         <div className="flex flex-col ml-4">
           <h4
