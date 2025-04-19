@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { QueryProvider } from "./providers/QueryProvider";
+import { QueryProvider } from "./providers/query-provider";
+import { ShoppingListProvider } from "./providers/shopping-list-provider";
 
 const inter = Inter({
   subsets: ["latin"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +23,9 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        <QueryProvider>{children}</QueryProvider>
+        <ShoppingListProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </ShoppingListProvider>
       </body>
     </html>
   );
