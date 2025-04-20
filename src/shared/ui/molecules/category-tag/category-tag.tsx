@@ -8,35 +8,35 @@ import {
 
 export const CategoryTag = ({ category = "fruit" }: { category: string }) => {
   const styleByCategory = {
-    bakery: {
+    padaria: {
       backgroundColor: "bg-yellow-dark",
       Icon: SandwichIcon,
       iconColor: "text-yellow",
       text: "padaria",
       textColor: "text-yellow",
     },
-    vegetable: {
+    legume: {
       backgroundColor: "bg-green-dark",
       Icon: CarrotIcon,
       iconColor: "text-green",
       text: "legume",
       textColor: "text-green",
     },
-    fruit: {
+    fruta: {
       backgroundColor: "bg-orange-dark",
       Icon: AppleIcon,
       iconColor: "text-orange",
       text: "fruta",
       textColor: "text-orange",
     },
-    drink: {
+    bebida: {
       backgroundColor: "bg-blue-dark",
       Icon: MilkIcon,
       iconColor: "text-blue",
       text: "bebida",
       textColor: "text-blue",
     },
-    meat: {
+    carne: {
       backgroundColor: "bg-pink-dark",
       Icon: BeefIcon,
       iconColor: "text-pink",
