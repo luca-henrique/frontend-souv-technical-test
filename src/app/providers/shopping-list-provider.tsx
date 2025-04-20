@@ -20,6 +20,7 @@ type ShoppingListContextType = {
   updateItem: (id: number, updatedItem: Partial<ProductItem>) => void;
   deleteItem: (id: number) => void;
   toggleItemChecked: (id: number) => void;
+  getItemById: (id: number) => ProductItem | undefined;
 };
 
 // Cria o contexto
@@ -29,35 +30,7 @@ const ShoppingListContext = createContext<ShoppingListContextType | undefined>(
 
 // Componente Provider
 export const ShoppingListProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<ProductItem[]>([
-    {
-      id: 0,
-      name: "Mocim1",
-      quantity: 1,
-      unit: "kg",
-      category: "fruta",
-      checked: false,
-      position: 0,
-    },
-    {
-      id: 3,
-      name: "Mocim2",
-      quantity: 1,
-      unit: "kg",
-      category: "fruta",
-      checked: false,
-      position: 1,
-    },
-    {
-      id: 2,
-      name: "Mocim3",
-      quantity: 1,
-      unit: "kg",
-      category: "fruta",
-      checked: false,
-      position: 2,
-    },
-  ]);
+  const [items, setItems] = useState<ProductItem[]>([]);
 
   // Função para adicionar um item
   const addItem = (item: ProductItem) => {
@@ -100,9 +73,13 @@ export const ShoppingListProvider = ({ children }: { children: ReactNode }) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
+  const getItemById = (id: number): ProductItem | undefined => {
+    return items.find((item) => item.id === id);
+  };
+
   return (
     <ShoppingListContext.Provider
-      value={{ items, addItem, updateItem, deleteItem, toggleItemChecked }}
+      value={{ items, addItem, updateItem, deleteItem, toggleItemChecked, getItemById }}
     >
       {children}
     </ShoppingListContext.Provider>

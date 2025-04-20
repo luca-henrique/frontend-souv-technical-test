@@ -36,6 +36,8 @@ export const SelectQuantity = ({ name, control }: SelectQuantityProps) => {
               value={value.quantity}
             />
             <Select
+              placeholder="Selecione"
+
               options={optionsQuantity}
               onChange={(e) => {
                 if (e) {
@@ -56,7 +58,6 @@ export const SelectQuantity = ({ name, control }: SelectQuantityProps) => {
                 indicatorsContainer: () => "pointer-events-none",
               }}
               value={optionsQuantity.find((option) => option.value === value.unit)}
-              defaultValue={optionsQuantity[0]}
             />
           </div>
         </div>)}

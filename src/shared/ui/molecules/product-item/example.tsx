@@ -107,76 +107,75 @@ export const ProductItemMenu = ({
   };
 
   return (
-    <>
-      <button
-        type="button"
-        title="Menu"
-        aria-label="Menu"
-        className="relative"
-        onClick={() => {
-          setIsVisibleActionOptions((prevState) => !prevState);
-        }}
-      >
-        <EllipsisVerticalIcon className="text-purple-light cursor-pointer active:scale-95" />
 
-        {isVisibleActionOptions && (
-          <div
-            role="menu"
-            tabIndex={0}
-            className="flex flex-col gap-1 absolute text-gray-100 bg-gray-500 border border-gray-400 rounded-md overflow-hidden right-0 top-[110%] shadow-sm shadow-gray-400"
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                setIsVisibleActionOptions(false);
-              }
-            }}
-          >
-            <button
-              className="flex items-center gap-2 text-sm p-3 cursor-pointer border border-gray-400 animate-[appear_.3s_backwards]
+    <button
+      type="button"
+      title="Menu"
+      aria-label="Menu"
+      className="relative"
+      onClick={() => {
+        setIsVisibleActionOptions((prevState) => !prevState);
+      }}
+    >
+      <EllipsisVerticalIcon className="text-purple-light cursor-pointer active:scale-95" />
+
+      {isVisibleActionOptions && (
+        <div
+          role="menu"
+          tabIndex={0}
+          className="flex flex-col gap-1 absolute text-gray-100 bg-gray-500 border border-gray-400 rounded-md overflow-hidden right-0 top-[110%] shadow-sm shadow-gray-400"
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              setIsVisibleActionOptions(false);
+            }
+          }}
+        >
+          <button
+            className="flex items-center gap-2 text-sm p-3 cursor-pointer border border-gray-400 animate-[appear_.3s_backwards]
                 data-[istouchsupported=false]:hover:bg-gray-300 
                 data-[istouchsupported=false]:hover:border-gray-300
                 "
-              onClick={() => {
-                deleteItem(id);
-              }}
-              data-istouchsupported={touchIsSupported}
-            >
-              <Trash2 size={16} />
-              Excluir
-            </button>
-            <Dialog>
-              <DialogTrigger asChild>
-                <button
-                  className="flex items-center gap-2 text-sm p-3 cursor-pointer border border-gray-400 animate-[appear_.3s_backwards]
+            onClick={() => {
+              deleteItem(id);
+            }}
+            data-istouchsupported={touchIsSupported}
+          >
+            <Trash2 size={16} />
+            Excluir
+          </button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button
+                className="flex items-center gap-2 text-sm p-3 cursor-pointer border border-gray-400 animate-[appear_.3s_backwards]
                     data-[istouchsupported=false]:hover:bg-gray-300 
                     data-[istouchsupported=false]:hover:border-gray-300
                     "
-                  data-istouchsupported={touchIsSupported}
-                  onClick={() => setIsVisibleActionOptions(false)}
-                >
-                  <Edit2 size={16} />
-                  Editar
-                </button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Editar Produto</DialogTitle>
-                  <DialogClose />
-                </DialogHeader>
-                <EditProductForm
-                  id={id}
-                  name={name}
-                  quantity={quantity}
-                  unit={unit}
-                  category={category}
-                  onSubmit={handleEdit}
-                />
-              </DialogContent>
-            </Dialog>
-          </div>
-        )}
-      </button>
-    </>
+                data-istouchsupported={touchIsSupported}
+                onClick={() => setIsVisibleActionOptions(false)}
+              >
+                <Edit2 size={16} />
+                Editar
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Editar Produto</DialogTitle>
+                <DialogClose />
+              </DialogHeader>
+              <EditProductForm
+                id={id}
+                name={name}
+                quantity={quantity}
+                unit={unit}
+                category={category}
+                onSubmit={handleEdit}
+              />
+            </DialogContent>
+          </Dialog>
+        </div>
+      )}
+    </button>
   );
 };
 
