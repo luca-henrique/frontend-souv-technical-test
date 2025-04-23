@@ -1,5 +1,6 @@
 "use client";
 
+import { useGetProducts } from "@/hooks/use-get-product";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 // Define o tipo para um item de produto
@@ -13,6 +14,12 @@ type ProductItem = {
   position: number;
 };
 
+interface Pagination {
+  page: number,
+  limit: number,
+  data: ProductItem[]
+}
+
 // Define o tipo para o contexto
 type ShoppingListContextType = {
   items: ProductItem[];
@@ -21,6 +28,9 @@ type ShoppingListContextType = {
   deleteItem: (id: number) => void;
   toggleItemChecked: (id: number) => void;
   getItemById: (id: number) => ProductItem | undefined;
+  products: Pagination
+  isLoading: boolean;
+  isError: boolean
 };
 
 // Cria o contexto
@@ -31,6 +41,13 @@ const ShoppingListContext = createContext<ShoppingListContextType | undefined>(
 // Componente Provider
 export const ShoppingListProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<ProductItem[]>([]);
+  const [page, setPage] = useState(1);
+  const limit = 10;
+
+  const { data: products, isLoading, isError } = useGetProducts(page, limit);
+
+
+  console.log(products, isLoading, isError)
 
   // Função para adicionar um item
   const addItem = (item: ProductItem) => {
@@ -79,7 +96,7 @@ export const ShoppingListProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ShoppingListContext.Provider
-      value={{ items, addItem, updateItem, deleteItem, toggleItemChecked, getItemById }}
+      value={{ items, addItem, updateItem, deleteItem, toggleItemChecked, getItemById, products, isLoading, isError }}
     >
       {children}
     </ShoppingListContext.Provider>

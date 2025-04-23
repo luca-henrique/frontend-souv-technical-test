@@ -23,9 +23,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        <ShoppingListProvider>
-          <QueryProvider>{children}</QueryProvider>
-        </ShoppingListProvider>
+        <QueryProvider>
+          <ShoppingListProvider>
+            {children}
+          </ShoppingListProvider>
+        </QueryProvider>
       </body>
     </html>
   );
