@@ -1,18 +1,10 @@
 "use client";
 
 import { useShoppingList } from "@/app/providers/shopping-list-provider";
-import { Edit2, EllipsisVerticalIcon, Trash2 } from "lucide-react";
+import { EllipsisVerticalIcon, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-} from "@/components/ui/dialog";
-import { UpdateProductForm } from "./update-product-form";
+
 
 interface ActionMenuProductProps {
   id: number;

@@ -8,6 +8,7 @@ import { optionsQuantity } from "@/shared/mock/option-quantity";
 import { Controller } from "react-hook-form";
 
 type SelectQuantityProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any;
   name: string
 };

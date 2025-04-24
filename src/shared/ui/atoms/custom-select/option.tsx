@@ -1,5 +1,6 @@
 import { components } from "react-select";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Option = (props: any) => {
   return (
     <components.Option {...props}>

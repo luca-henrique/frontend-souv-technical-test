@@ -9,7 +9,7 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
+
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -55,13 +55,14 @@ export const categories = [
   },
 ];
 
-export default function SelectWithIconDemo({
+
+const SelectWithIconDemo = ({
   label,
   name,
 }: {
   label: string;
   name: string;
-}) {
+}) => {
   const [value, setValue] = React.useState("apple");
 
   return (
@@ -96,3 +97,5 @@ export default function SelectWithIconDemo({
     </div>
   );
 }
+
+export default SelectWithIconDemo;

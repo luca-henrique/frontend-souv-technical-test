@@ -27,7 +27,7 @@ interface Pagination {
 
 // Define o tipo para o contexto
 type ShoppingListContextType = {
-  addItem: (item: ProductItem) => void;
+  addItem: (item: Partial<ProductItem>) => void;
   deleteItem: (id: number) => void;
   toggleItemChecked: (id: number) => void;
   products: Pagination;
@@ -70,7 +70,8 @@ export const ShoppingListProvider = ({ children }: { children: ReactNode }) => {
   const deleteProductMutation = useDeleteProduct()
   const createProductMutation = useCreateProduct()
 
-  const addItem = (item: ProductItem) => {
+  const addItem = (item: Partial<ProductItem>) => {
+    //@ts-ignore  
     createProductMutation.mutate(item)
   };
 

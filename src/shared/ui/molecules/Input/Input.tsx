@@ -7,6 +7,7 @@ import { Controller } from "react-hook-form";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any; // Control should be passed from the parent component
   className?: string;
 }
