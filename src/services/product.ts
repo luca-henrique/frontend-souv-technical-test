@@ -1,7 +1,7 @@
 import { ProductProps } from "@/types/product";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3001/product";
+const API_BASE_URL = "http://localhost:3000/product";
 
 export const ProductService = {
   async getProducts(page: number, limit: number) {
