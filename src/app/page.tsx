@@ -7,7 +7,7 @@ import { Header } from "@/shared/ui/organisms/header/header";
 
 export default function Home() {
   return (
-    <div className="bg-gray-600 h-screen flex flex-col  items-center ">
+    <div className="bg-gray-600 h-full flex flex-col  items-center ">
       <div className="relative w-full h-[180px]">
         <Image
           src="/header.png"
@@ -17,7 +17,7 @@ export default function Home() {
           className="md:object-cover"
         />
       </div>
-      <div className="flex flex-col w-full absolute top-12 items-center p-6">
+      <div className="flex flex-col w-full h-screen absolute top-12 items-center p-6 bg-gray-600 ">
         <Header />
         <ProductItemList />
       </div>
