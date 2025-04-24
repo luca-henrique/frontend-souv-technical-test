@@ -1,134 +1,83 @@
-# Project Architecture
+# Frontend Souv Technical Test
 
-## Technologies
+Este projeto é um teste técnico de frontend desenvolvido por Lucas Henrique, utilizando tecnologias modernas como Next.js, Tailwind CSS, React Query e a abordagem Atomic Design. O objetivo é demonstrar habilidades em construção de interfaces modulares, acessíveis e com gerenciamento eficiente de estado e dados.
 
-- **Atomic Design** - For component organization and reusability
-- **Shadcn UI** - For beautiful, accessible, and customizable components
-  - Built on top of Radix UI primitives
-  - Styled with Tailwind CSS
-  - Dark mode support
-  - Fully customizable and themeable
-- **React Query (TanStack Query)** - For efficient data fetching and caching
-  - Automatic background refetching
-  - Request deduplication
-  - Caching and invalidation
-  - Optimistic updates
-  - Error handling
+## 🛠️ Tecnologias Utilizadas
 
-## Directory Structure
+- **Next.js** – Framework React para aplicações web com renderização híbrida.
+- **Tailwind CSS** – Utilitário CSS para estilização rápida e responsiva.
+- **Shadcn UI** – Biblioteca de componentes acessíveis e personalizáveis, baseada em Radix UI.
+- **React Query (TanStack Query)** – Gerenciamento de estado assíncrono e cache de dados.
+- **Atomic Design** – Arquitetura de componentes reutilizáveis e escaláveis.
+- **TypeScript** – Tipagem estática para maior robustez no desenvolvimento.
+- **Jest** – Framework de testes para garantir a qualidade do código.
+
+## 📁 Estrutura de Diretórios
 
 ```
-src/
-├── app/                 # Application initialization, routing, store, providers
-│   └── providers/       # Global providers (QueryProvider, etc.)
-├── pages/              # Page components
-├── widgets/            # Complex UI components composed of entities and features
-├── features/           # User interactions, actions, and processes
-├── entities/           # Business entities and their logic
-└── shared/             # Reusable modules, helpers, and UI components
-    ├── api/            # API-related utilities and hooks
-    └── ui/             # UI components following Atomic Design
-        ├── atoms/      # Basic building blocks (buttons, inputs, etc.)
-        ├── molecules/  # Groups of atoms working together
-        └── organisms/  # Complex UI components composed of molecules
+frontend-souv-technical-test/
+├── __mocks__/             # Mocks para testes
+├── public/                # Arquivos públicos (imagens, ícones, etc.)
+├── src/                   # Código-fonte principal
+│   ├── components/        # Componentes organizados por Atomic Design
+│   ├── pages/             # Páginas da aplicação
+│   ├── services/          # Serviços de API e lógica de negócios
+│   ├── styles/            # Estilos globais e configurações do Tailwind
+│   └── utils/             # Utilitários e helpers
+├── components.json        # Configurações de componentes
+├── jest.config.js         # Configuração do Jest
+├── jest.setup.js          # Setup inicial para testes
+├── next.config.ts         # Configuração do Next.js
+├── tailwind.config.js     # Configuração do Tailwind CSS
+├── tsconfig.json          # Configuração do TypeScript
+└── package.json           # Dependências e scripts do projeto
 ```
 
-## Architecture Guidelines
+## 🚀 Como Executar o Projeto
 
-### Feature Sliced Architecture (FSA)
+1. **Clone o repositório:**
 
-1. **app/** - Application-wide configurations and providers
+   ```bash
+   git clone https://github.com/luca-henrique/frontend-souv-technical-test.git
+   cd frontend-souv-technical-test
+   ```
 
-   - App initialization
-   - Routing configuration
-   - Global state management
-   - Theme providers
-   - React Query provider
+2. **Instale as dependências:**
 
-2. **pages/** - Page components
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
 
-   - Each page represents a route
-   - Composed of widgets and features
-   - No business logic, only composition
+3. **Inicie o servidor de desenvolvimento:**
 
-3. **widgets/** - Complex UI components
+   ```bash
+   npm run dev
+   # ou
+   yarn dev
+   ```
 
-   - Composed of entities and features
-   - Can be used across multiple pages
-   - May contain some business logic
+4. **Acesse a aplicação:**
 
-4. **features/** - User interactions and processes
+   Abra o navegador e vá para `http://localhost:3000`.
 
-   - User actions
-   - Business processes
-   - Feature-specific logic
-   - Data fetching with React Query
+## ✅ Testes
 
-5. **entities/** - Business entities
-   - Data models
-   - Entity-specific logic
-   - API interactions
+Para executar os testes unitários com Jest:
 
-### Atomic Design with Shadcn UI
+```bash
+npm run test
+# ou
+yarn test
+```
 
-1. **atoms/** - Basic building blocks
+## 📌 Observações
 
-   - Buttons (using Shadcn UI Button)
-   - Inputs (using Shadcn UI Input)
-   - Labels (using Shadcn UI Label)
-   - Icons (using Lucide icons)
+- O projeto utiliza a abordagem Atomic Design para organização dos componentes, facilitando a manutenção e escalabilidade.
+- A biblioteca Shadcn UI é utilizada para garantir componentes acessíveis e facilmente personalizáveis.
+- O gerenciamento de dados é feito com React Query, proporcionando uma experiência otimizada de fetching e caching.
 
-2. **molecules/** - Groups of atoms
+## 📄 Licença
 
-   - Search forms
-   - Navigation menus
-   - Cards (using Shadcn UI Card)
-
-3. **organisms/** - Complex UI components
-   - Headers
-   - Sidebars
-   - Content sections
-
-## Best Practices
-
-1. **Dependencies Flow**
-
-   - Higher layers can import from lower layers
-   - Lower layers cannot import from higher layers
-   - Shared layer can be imported by any layer
-
-2. **Component Organization**
-
-   - Keep components small and focused
-   - Use clear naming conventions
-   - Document component props and usage
-   - Use Shadcn UI components when available
-   - Customize Shadcn UI components using Tailwind CSS
-
-3. **Data Fetching**
-
-   - Use React Query for all data fetching
-   - Implement proper error handling
-   - Use optimistic updates when appropriate
-   - Cache data at the appropriate level
-   - Implement proper loading states
-   - Use the shared `useApi` hook for consistency
-
-4. **Code Splitting**
-
-   - Split code by features
-   - Use lazy loading for routes
-   - Optimize bundle size
-
-5. **State Management**
-
-   - Use React Query for server state
-   - Use local state for UI state
-   - Use global state for shared data
-   - Keep state as close to usage as possible
-
-6. **Styling**
-   - Use Tailwind CSS for custom styling
-   - Follow Shadcn UI design patterns
-   - Maintain consistent spacing and colors
-   - Use CSS variables for theming
+Este projeto está licenciado sob a [MIT License](LICENSE).
