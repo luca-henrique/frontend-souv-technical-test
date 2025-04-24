@@ -26,7 +26,6 @@ export const useRegisterProduct = () => {
   } = methods;
 
   const onSubmit = (data: FormValues) => {
-    console.log("Dados do formulário:", data);
     addItem({
       name: data.item,
       quantity: data.quantity.quantity,

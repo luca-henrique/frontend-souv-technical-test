@@ -50,9 +50,8 @@ const optionsCategory = [
 
 export const RegisterProductForm = () => {
 
-  const { handleSubmit, onSubmit, control, errors } = useRegisterProduct()
+  const { handleSubmit, onSubmit, control } = useRegisterProduct()
 
-  console.log(errors)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex md:flex-row flex-col items-end gap-2">

@@ -1,6 +1,9 @@
 "use client";
 
+import { useCreateProduct } from "@/hooks/use-create-product";
+import { useDeleteProduct } from "@/hooks/use-delete-product";
 import { useGetProducts } from "@/hooks/use-get-product";
+import { useUpdateProductChecked } from "@/hooks/use-update-checked-product";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 // Define o tipo para um item de produto
@@ -15,22 +18,23 @@ type ProductItem = {
 };
 
 interface Pagination {
-  page: number,
-  limit: number,
-  data: ProductItem[]
+  page: number;
+  limit: number;
+  data: ProductItem[];
+  currentPage: number,
+  totalPages: number,
 }
 
 // Define o tipo para o contexto
 type ShoppingListContextType = {
-  items: ProductItem[];
   addItem: (item: ProductItem) => void;
-  updateItem: (id: number, updatedItem: Partial<ProductItem>) => void;
   deleteItem: (id: number) => void;
   toggleItemChecked: (id: number) => void;
-  getItemById: (id: number) => ProductItem | undefined;
-  products: Pagination
+  products: Pagination;
   isLoading: boolean;
-  isError: boolean
+  isError: boolean;
+  handleNextPage: () => void;
+  handlePreviuesPage: () => void;
 };
 
 // Cria o contexto
@@ -40,63 +44,59 @@ const ShoppingListContext = createContext<ShoppingListContextType | undefined>(
 
 // Componente Provider
 export const ShoppingListProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<ProductItem[]>([]);
   const [page, setPage] = useState(1);
-  const limit = 10;
-
+  const limit = 5;
   const { data: products, isLoading, isError } = useGetProducts(page, limit);
 
+  console.log(page)
 
-  console.log(products, isLoading, isError)
+  const handlePreviuesPage = () => {
+    const { totalPages } = products
+    console.log('aq', page, totalPages)
+    if (page >= 1 && page <= totalPages) {
+      setPage((oldPage) => oldPage - 1)
+    }
+  }
 
-  // Função para adicionar um item
+  const handleNextPage = () => {
+    const { totalPages } = products
+    if (page < totalPages) {
+      setPage((oldPage) => oldPage + 1)
+    }
+  }
+
+
+  const updateProductCheckedMutation = useUpdateProductChecked();
+  const deleteProductMutation = useDeleteProduct()
+  const createProductMutation = useCreateProduct()
+
   const addItem = (item: ProductItem) => {
-    setItems((prevItems) => [
-      ...prevItems,
-      { ...item, id: items.length, position: items.length, checked: false },
-    ]);
+    createProductMutation.mutate(item)
   };
 
-  // Função para marcar/desmarcar um item como comprado
   const toggleItemChecked = (id: number) => {
-    setItems((prevItems) => {
-      const updatedItems = prevItems.map((item) =>
-        item.id === id ? { ...item, checked: !item.checked } : item
-      );
-
-      const itemToMove = updatedItems.find((item) => item.id === id);
-
-      if (itemToMove?.checked) {
-        // Move o item para a última posição se estiver marcado como "checked"
-        return [...updatedItems.filter((item) => item.id !== id), itemToMove];
-      }
-
-      // Ordena os itens pela posição original (position) quando "checked" for false
-      return updatedItems.sort((a, b) => a.position - b.position);
-    });
-  };
-
-  // Função para atualizar um item
-  const updateItem = (id: number, updatedItem: Partial<ProductItem>) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, ...updatedItem } : item
-      )
+    const findProduct = products.data.find(
+      (item: ProductItem) => item.id === id
     );
+    updateProductCheckedMutation.mutate({ id, checked: !findProduct.checked });
   };
 
-  // Função para deletar um item
   const deleteItem = (id: number) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
-
-  const getItemById = (id: number): ProductItem | undefined => {
-    return items.find((item) => item.id === id);
+    deleteProductMutation.mutate({ id })
   };
 
   return (
     <ShoppingListContext.Provider
-      value={{ items, addItem, updateItem, deleteItem, toggleItemChecked, getItemById, products, isLoading, isError }}
+      value={{
+        addItem,
+        deleteItem,
+        toggleItemChecked,
+        products,
+        isLoading,
+        isError,
+        handlePreviuesPage,
+        handleNextPage,
+      }}
     >
       {children}
     </ShoppingListContext.Provider>

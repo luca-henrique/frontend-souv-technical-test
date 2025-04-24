@@ -6,7 +6,7 @@ import { CategoryTag } from "../category-tag/category-tag";
 import { useShoppingList } from "@/app/providers/shopping-list-provider";
 import { ActionMenuProduct } from "./action-menu-product";
 
-interface ItemProps {
+export interface ItemProps {
   category: string;
   name: string;
   quantity: number;

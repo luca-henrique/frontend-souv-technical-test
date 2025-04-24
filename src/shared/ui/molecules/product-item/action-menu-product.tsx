@@ -58,27 +58,7 @@ export const ActionMenuProduct = ({ id }: ActionMenuProductProps) => {
             <Trash2 size={16} />
             Excluir
           </button>
-          <Dialog>
-            <DialogTrigger asChild>
-              <button
-                className="flex items-center gap-2 text-sm p-3 cursor-pointer border border-gray-400 animate-[appear_.3s_backwards]
-                    data-[istouchsupported=false]:hover:bg-gray-300 
-                    data-[istouchsupported=false]:hover:border-gray-300
-                    "
-                onClick={() => setIsVisibleActionOptions(false)}
-              >
-                <Edit2 size={16} />
-                Editar
-              </button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Editar Produto</DialogTitle>
-                <DialogClose />
-              </DialogHeader>
-              <UpdateProductForm id={id} />
-            </DialogContent>
-          </Dialog>
+
         </div>
       )}
     </button>

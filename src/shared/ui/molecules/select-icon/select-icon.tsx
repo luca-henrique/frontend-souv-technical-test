@@ -63,7 +63,6 @@ export default function SelectWithIconDemo({
   name: string;
 }) {
   const [value, setValue] = React.useState("apple");
-  console.log(value);
 
   return (
     <div className="flex flex-col items-start gap-1.5 w-[232px] focus-within:[&>div>button>svg]:text-[#9747FF] ">
